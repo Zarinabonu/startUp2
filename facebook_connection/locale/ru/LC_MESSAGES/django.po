@@ -1,0 +1,35 @@
+#: .\templates\base.html:28
+msgid "Phone:"
+msgstr ""
+
+#: .\templates\base.html:29
+msgid "Email:"
+msgstr ""
+
+#: .\templates\base.html:55
+msgid "Home"
+msgstr ""
+
+#: .\templates\base.html:57
+msgid "Blog"
+msgstr ""
+
+#: .\templates\base.html:59
+msgid "Contact"
+msgstr ""
+
+#: .\templates\blog.html:41
+msgid "Our Blog"
+msgstr ""
+
+#: .\templates\blog.html:42
+msgid "We Make Beautiful Things"
+msgstr ""
+
+#: .\templates\blog.html:97
+msgid "Follow Us"
+msgstr ""
+
+#: .\templates\blog.html:106
+msgid "Subscribe Newsletter"
+msgstr ""
