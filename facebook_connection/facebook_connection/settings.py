@@ -25,7 +25,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'social_django',
+    # 'social_django',
     'start_facebook',
     'register',
     'startUpBanner',
@@ -56,8 +56,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
+                # 'social_django.context_processors.backends',
+                # 'social_django.context_processors.login_redirect',
 
                 #'django.template.context_processors.i18n',
 
@@ -67,12 +67,12 @@ TEMPLATES = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = [
-        'social_core.backends.linkedin.LinkedinOAuth2',
-        'social_core.backends.instagram.InstagramOAuth2',
-        'social_core.backends.facebook.FacebookOAuth2',
-        'django.contrib.auth.backends.ModelBackend',
-    ]
+# AUTHENTICATION_BACKENDS = [
+#         'social_core.backends.linkedin.LinkedinOAuth2',
+#         'social_core.backends.instagram.InstagramOAuth2',
+#         'social_core.backends.facebook.FacebookOAuth2',
+#         'django.contrib.auth.backends.ModelBackend',
+#     ]
 
 WSGI_APPLICATION = 'facebook_connection.wsgi.application'
 
@@ -143,20 +143,20 @@ STATICFILES_DIRS = [
 # LOGOUT_URL = 'logout'
 #LOGOUT_REDIRECT_URL = 'login'
 
-SOCIAL_AUTH_FACEBOOK_KEY = 487175451858388
-SOCIAL_AUTH_FACEBOOK_SECRET = 'a2bc6f483bca1e2ad74fc69dacfc6bd1'
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link']
+# SOCIAL_AUTH_FACEBOOK_KEY = 487175451858388
+# SOCIAL_AUTH_FACEBOOK_SECRET = 'a2bc6f483bca1e2ad74fc69dacfc6bd1'
+# SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link']
 
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-    'fields':'id, name, email, picture.type(large), link'
-}
-SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [
-    ('name', 'name'),
-    ('email', 'email'),
-    ('picture', 'picture'),
-    ('link', 'profile_url'),
-
-]
+# SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+#     'fields':'id, name, email, picture.type(large), link'
+# }
+# SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [
+#     ('name', 'name'),
+#     ('email', 'email'),
+#     ('picture', 'picture'),
+#     ('link', 'profile_url'),
+#
+# ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # 465

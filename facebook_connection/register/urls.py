@@ -6,5 +6,5 @@ urlpatterns = [
     path('list/', views.RegisterListView.as_view(), name='home'),
     path('create/', views.RegisterCreateView.as_view(), name='register-create'),
     path('update/<int:pk>', views.RegisterUpdateView.as_view(), name='register-update'),
-    path('social-auth/', include('social_django.urls', namespace="social")),
+    path('login', views.LogInView.as_view(), name="login"),
 ]

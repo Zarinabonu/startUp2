@@ -1,8 +1,8 @@
-from django.shortcuts import HttpResponseRedirect
+from django.contrib.auth import authenticate, login
+from django.shortcuts import HttpResponseRedirect, redirect, render
 from django.urls import reverse
 from django.views.generic import TemplateView, ListView, View, DetailView
 from register.models import StartUpRegister
-
 
 class RegisterListView(ListView):
     # template_name = 'about/list.html'
@@ -21,15 +21,16 @@ class RegisterUpdateView(DetailView):
 class LogInView(View):
     def get(self,request):
         print('AAAAAAAAAAAAAA')
-        return render(request,'index_login.html')
+        return render(request,'index.html')
 
     def post(self, request):
         print('QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ')
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
+        print('USERNAME',username,' PASSWORD',password)
         if user is not None:
             login(request, user)
-            return redirect('banner-list')
+            return redirect('')
         else  :
             print('ERROR')

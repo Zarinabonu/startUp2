@@ -42,8 +42,8 @@
             <div class="row justify-content-center mb-4">
               <div class="col-md-8 text-center">
                 <h1>We Are Expert in <span class="typed-words"></span></h1>
-                <p class="lead mb-5">We Make Beautiful Things</p>
-                 <div class="hire_us_btn"><a href="#form_date" class="btn btn-primary btn-md">Hire Us</a></div>
+                <p class="lead mb-5">{% trans "We Make Beautiful Things" %}</p>
+                 <div class="hire_us_btn"><a href="#form_date" class="btn btn-primary btn-md">{% trans "Hire Us" %}</a></div>
               </div>
             </div>
 
@@ -64,7 +64,7 @@
                     <div>
                       <a href="https://vimeo.com/317571768" class="popup-vimeo d-block play"><span class="icon-play"></span></a>
                     </div>
-                    <h2>Welcome To Chimper An Awward Winning Web Agency</h2>
+                    <h2>{% trans "Welcome To Chimper An Awward Winning Web Agency" %}</h2>
                   </div>
                   <img src="{% static 'images/about_1.jpg' %}" alt="Image" class="img-feature img-fluid">
                 </div>
@@ -133,7 +133,7 @@
             <a href="#" class="media-1">
               <img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid">
               <div class="media-1-content">
-                <h2>Project Name 1</h2>
+                <h2>{% trans "Project Name 1" %}</h2>
                 <span class="category">Web Application</span>
               </div>
             </a>
@@ -142,7 +142,7 @@
             <a href="#" class="media-1">
               <img src="{% static 'images/img_2.jpg' %}" alt="Image" class="img-fluid">
               <div class="media-1-content">
-                <h2>Project Name 2</h2>
+                <h2>{% trans "Project Name 2" %}</h2>
                 <span class="category">Branding</span>
               </div>
             </a>
@@ -152,13 +152,13 @@
               <img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid">
               <div class="media-1-content">
                 <h2>Project Name 3</h2>
-                <span class="category">Website</span>
+                <span class="category">{% trans "Website" %}</span>
               </div>
             </a>
           </div>
 
           <div class="col-12 text-center mt-5">
-            <a href="#" class="btn btn-primary btn-md">Show All Works</a>
+            <a href="#" class="btn btn-primary btn-md">{% trans "Show All Works" %}</a>
           </div>
 
           
@@ -239,7 +239,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 text-center">
-            <h2 class="text-black h1 site-section-heading text-center">Blog</h2>
+            <h2 class="text-black h1 site-section-heading text-center">{{request.user}}</h2>
           </div>
         </div>
 
@@ -261,15 +261,15 @@
     </section>
       <section class="login-content" >
         <div class="login-box" >
-            <form class="login-form" action="index.html">
+            <form class="login-form" action="{% url 'login' %}">
                 <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>LOGIN</h3>
                 <div class="form-group">
                     <label class="control-label">USERNAME</label>
-                    <input class="form-control" type="text" placeholder="Email" autofocus>
+                    <input class="form-control" name ="username" type="text" placeholder="Username" autofocus>
                 </div>
                 <div class="form-group">
                     <label class="control-label">PASSWORD</label>
-                    <input class="form-control" type="password" placeholder="Password">
+                    <input name ="password" class="form-control" type="password" placeholder="Password">
                 </div>
                 <div class="form-group">
                     <div class="utility">
@@ -292,55 +292,37 @@
                         <div class="tile">
                             <h3 class="tile-title">Vertical Form</h3>
                             <div class="tile-body">
-                                <form>
+                                <form >
                                     <div class="form-group">
-                                        <label class="control-label">Name</label>
-                                        <input class="form-control" type="text" placeholder="Enter full name">
+                                        <label class="control-label">{% trans "Username" %}</label>
+                                        <input name ="username" class="form-control" type="text" placeholder="Enter Username">
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label">Email</label>
-                                        <input class="form-control" type="email" placeholder="Enter email address">
+                                        <label class="control-label">{% trans "Password" %}</label>
+                                        <input name ="password" class="form-control" placeholder="Please enter password ">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label">Address</label>
-                                        <textarea class="form-control" rows="4" placeholder="Enter your address"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label">Gender</label>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="radio" name="gender">Male
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="radio" name="gender">Female
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label">Identity Proof</label>
-                                        <input class="form-control" type="file">
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox">I accept the terms and conditions
-                                            </label>
-                                        </div>
-                                    </div>
+{#                                    <div class="form-group">#}
+{#                                        <label class="control-label">Email</label>#}
+{#                                        <input  class="form-control" type="email" placeholder="Please enter email address">#}
+{#                                    </div>#}
+{#                                    <div class="form-group">#}
+{#                                        <label class="control-label">Phone number</label>#}
+{#                                        <input id="phono"  class="form-control" rows="4" placeholder="Please enter phone number">#}
+{#                                    </div>#}
+
+
                                 </form>
                             </div>
                             <div class="tile-footer">
-                                <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                                <button id="createButton" data-url="{% url 'register-create-api' %}" class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
                             </div>
                             <div class="form-group mt-3">
-                                <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
+                                <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> {% trans "Back to Login" %}</a></p>
                             </div>
                             <a href="#myPage" class="bg-primary py-5 d-block" style="margin-top: 50px;">
                                 <div class="row justify-content-center">
                                     <div class="col-md10">
-                                        <h2 class="text-white">Hire Us &amp; Let's Get Started</h2>
+                                        <h2 class="text-white">{% trans "Hire Us &amp; Let's Get Started" %}</h2>
                                     </div>
                                 </div>
                             </a>
@@ -424,12 +406,12 @@
   <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
   <script src="{% static 'js/aos.js' %}"></script>
 
-  <script src="{ % static 'js/jquery-3.2.1.min.js'%}"></script>
-    <script src="{ % static 'js/popper.min.js' %}"></script>
-    <script src="{ % static 'js/bootstrap.min.js' %}"></script>
-    <script src="{ % static 'js/main.js' %}"></script>
+{#  <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>#}
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
     <!-- The javascript plugin to display page loading on top-->
-    <script src="{ % static 'js/plugins/pace.min.js' %}"></script>
+    <script src="{% static 'js/plugins/pace.min.js' %}"></script>
     <script type="text/javascript">
     // Login Page Flipbox control
     $('.login-content [data-toggle="flip"]').click(function() {
@@ -476,17 +458,15 @@
     })
     </script>
 
-     <script>
+       <script>
         $(document).ready(function () {
             $("#createButton").click(function (e) {
                 e.preventDefault();
-                
+
                 let formData = new FormData();
                 formData.append('username', $('input[name="username"]').val());
                 formData.append('password', $('input[name="password"]').val());
-                formData.append('contact_num', $('input[name="contact_num"]').val());
-                formData.append('contact_email', $('input[name="contact_email"]').val());
-              
+
                 var url = $("#createButton").data("url");
                 $.ajax({
                     headers: { "X-CSRFToken": "{{csrf_token}}" },
@@ -496,7 +476,7 @@
                     method: 'POST',
                     data: formData,
                     success: function (data) {
-                        window.location.href = 'list/';
+                        window.location.href = '';
                     },
                     error: function (data) {
                         alert('Error');
@@ -505,6 +485,7 @@
             })
         });
     </script>
+
     <script src="https://unpkg.com/imask"></script>
     <script type="text/javascript">
       var phoneMask = IMask(
