@@ -261,7 +261,7 @@
     </section>
       <section class="login-content" >
         <div class="login-box" >
-            <form class="login-form" action="{% url 'login' %}">
+            <form class="login-form" >
                 <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>LOGIN</h3>
                 <div class="form-group">
                     <label class="control-label">USERNAME</label>
@@ -290,32 +290,27 @@
                 <div class="btn_hire_us justify-content-center" id="form_date">
                     <div class="col-md-12">
                         <div class="tile">
+                            <form action="">
                             <h3 class="tile-title">Vertical Form</h3>
+
                             <div class="tile-body">
-                                <form >
+
                                     <div class="form-group">
                                         <label class="control-label">{% trans "Username" %}</label>
-                                        <input name ="username" class="form-control" type="text" placeholder="Enter Username">
+                                        <input name="username" class="form-control" type="text" placeholder="Enter Username">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">{% trans "Password" %}</label>
-                                        <input name ="password" class="form-control" placeholder="Please enter password ">
+                                        <input name="password" class="form-control" placeholder="Please enter password ">
                                     </div>
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label">Email</label>#}
-{#                                        <input  class="form-control" type="email" placeholder="Please enter email address">#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label">Phone number</label>#}
-{#                                        <input id="phono"  class="form-control" rows="4" placeholder="Please enter phone number">#}
-{#                                    </div>#}
 
-
-                                </form>
                             </div>
                             <div class="tile-footer">
-                                <button id="createButton" data-url="{% url 'register-create-api' %}" class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                                <button id="createButton" data-url="{% url 'register-create-api' %}" class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>&nbsp;
+                                <a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
                             </div>
+
+
                             <div class="form-group mt-3">
                                 <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> {% trans "Back to Login" %}</a></p>
                             </div>
@@ -326,7 +321,9 @@
                                     </div>
                                 </div>
                             </a>
+                            </form>
                         </div>
+
                     </div>
                 </div>
             </form>
@@ -341,35 +338,13 @@
           <div class="col-md-9">
             <div class="row">
               <div class="col-md-5">
-                <h2 class="footer-heading mb-4">About Us</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem. Amet aliquid nesciunt veritatis aliquam.</p>
-              </div>
-              <div class="col-md-3 ml-auto">
-                <h2 class="footer-heading mb-4">Features</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">Testimonials</a></li>
-                  <li><a href="#">Contact Us</a></li>
-                </ul>
-              </div>
-              <div class="col-md-3">
-                <h2 class="footer-heading mb-4">Follow Us</h2>
-                <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-              </div>
+
             </div>
           </div>
           <div class="col-md-3">
-            <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
             <form action="#" method="post">
               <div class="input-group mb-3">
-                <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-primary text-white" type="button" id="button-addon2">Send</button>
-                </div>
+
               </div>
             </form>
           </div>
@@ -379,7 +354,6 @@
             <div class="border-top pt-5">
             <p>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
             </div>
@@ -419,6 +393,36 @@
         return false;
     });
     </script>
+      <script>
+        $(document).ready(function () {
+            $("#createButton").click(function (e) {
+                e.preventDefault();
+
+                let formData = new FormData();
+                formData.append('username', $('input[name="username"]').val());
+                alert($('input[name="username"]').val());
+                formData.append('password', $('input[name="password"]').val());
+                alert($('input[name="password"]').val());
+
+                var url = $("#createButton").data("url");
+                $.ajax({
+                    headers: { "X-CSRFToken": "{{csrf_token}}" },
+                    url: url,
+                    processData: false,
+                    contentType: false,
+                    method: 'POST',
+                    data: formData,
+                    success: function (data) {
+                        window.location.href = '';
+                    },
+                    error: function (data) {
+                        alert('Error');
+                    }
+                });
+            })
+        });
+    </script>
+
   <script src="{% static 'js/typed.js' %}"></script>
             <script>
             var typed = new Typed('.typed-words', {
@@ -458,33 +462,6 @@
     })
     </script>
 
-       <script>
-        $(document).ready(function () {
-            $("#createButton").click(function (e) {
-                e.preventDefault();
-
-                let formData = new FormData();
-                formData.append('username', $('input[name="username"]').val());
-                formData.append('password', $('input[name="password"]').val());
-
-                var url = $("#createButton").data("url");
-                $.ajax({
-                    headers: { "X-CSRFToken": "{{csrf_token}}" },
-                    url: url,
-                    processData: false,
-                    contentType: false,
-                    method: 'POST',
-                    data: formData,
-                    success: function (data) {
-                        window.location.href = '';
-                    },
-                    error: function (data) {
-                        alert('Error');
-                    }
-                });
-            })
-        });
-    </script>
 
     <script src="https://unpkg.com/imask"></script>
     <script type="text/javascript">
@@ -492,7 +469,8 @@
       document.getElementById('phono'), {
       mask: '+{998}(90)000-00-00' });
 </script>
-    
+
+
   <script src="{% static 'js/main.js' %}"></script>
     {% endblock %}
   </body>

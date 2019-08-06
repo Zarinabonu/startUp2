@@ -1,38 +1,35 @@
 # import self as self
 from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
+
 from register.models import StartUpRegister
 
+
 class UserSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'password')
 
-	class Meta:
-		model = User
-		fields = ('username', 'password')
+# def create(self, validated_data):
+# 	affiliate_data = validated_data.pop('register')
+# 	user = User.objects.create_user(**validated_data)
+# 	StartUpRegister.objects.create(user=user, **affiliate_data)
+# 	return user
 
-	# def create(self, validated_data):
-	# 	affiliate_data = validated_data.pop('register')
-	# 	user = User.objects.create_user(**validated_data)
-	# 	StartUpRegister.objects.create(user=user, **affiliate_data)
-	# 	return user
 
 class RegisterCreateSerializer(ModelSerializer):
+    user = UserSerializer()
 
-	user = UserSerializer()
-	class Meta:
+    class Meta:
+        model = StartUpRegister
+        fields = ('contact_num', 'contact_email', 'user')
 
-		model = StartUpRegister
-		fields = ('contact_num','contact_email','user')
+    def create(self, validated_data):
+        user_data = validated_data.pop('user')
+        user = User.objects.create(**validated_data)
 
-	def create (self,validated_data):
-		user_data = validated_data.pop('user')
-		user = User.objects.create(**validated_data)
-
-		startUp = StartUpRegister.objects.create(user=user,**validated_data)
-		return startUp
-
-
-
-
+        startUp = StartUpRegister.objects.create(user=user, **validated_data)
+        return startUp
 
 
 # 	def create(self,validated_data):
@@ -62,6 +59,6 @@ class RegisterCreateSerializer(ModelSerializer):
 
 
 class RegisterListSerializer(ModelSerializer):
-	class Meta:
-		model = StartUpRegister
-		fields = ('firstname', 'lastname', 'contact_num','contact_email')
+    class Meta:
+        model = StartUpRegister
+        fields = ('firstname', 'lastname', 'contact_num', 'contact_email')

@@ -3,6 +3,8 @@
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import export as export
+# os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -24,7 +26,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-
     # 'social_django',
     'start_facebook',
     'register',
@@ -165,3 +166,4 @@ EMAIL_PORT = 2525
 EMAIL_HOST_USER = "zarinabonu199924@mail.ru"
 EMAIL_HOST_PASSWORD = "7775944z"
 EMAIL_USE_TLS = True
+

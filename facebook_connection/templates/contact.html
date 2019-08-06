@@ -57,16 +57,15 @@
         <div class="row">
           <div class="col-md-7 mb-5">
 
-            
 
-            <form action="#" class="p-5 bg-white">
+           <form action="#" class="p-5 bg-white">
               
               <h2 class="h4 text-black mb-5">{% trans "Banner Form" %}</h2> 
 
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">{% trans "Title" %} </label>
-                  <input name = "title" type="text" id="<title> </title>" class="form-control">
+                  <label class="text-black" >{% trans "Title" %} </label>
+                  <input name = "title" type="text"  class="form-control">
                 </div>
                 
               </div>
@@ -74,17 +73,15 @@
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="message">{% trans "Description" %}</label> 
-                  <textarea name ="description" id="message" cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..."></textarea>
+                  <label class="text-black" >{% trans "Description" %}</label>
+                  <textarea name ="description"  cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..."></textarea>
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                        <button data-url="{% url 'banner-create-api' %}" class="contact1-form-btn" id="button-down">
-                                  {% trans "Submit Statup" %}
-                        </button>
-                  <input data-url="banner-create-api" type="submit" value="Send Message" id="button-down" class="btn btn-primary btn-md text-white">
+                        <button id="createButton" data-url="{% url 'banner-create-api' %}" class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Submite Banner</button>&nbsp;
+
                 </div>
               </div>
 
@@ -185,37 +182,6 @@
     </footer>
   </div>
 
-  <script>
-        window.onload = function () {
-            document.getElementById('button-up').onclick = function (e) {
-                $(".contact1").css('height', '840px');
-            }
-            document.getElementById('button-down').onclick = function (e) {
-                e.preventDefault();
-                $(".contact1").css('height', '0px');
-                 let formData = new FormData();
-                formData.append('title', $('input[name="title"]').val());
-                formData.append('description', $('input[name="description"]').val());
-               
-                var url = $("#button-down").data("url");
-                $.ajax({
-                    headers: { "X-CSRFToken": "{{csrf_token}}" },
-                    url: url,
-                    processData: false,
-                    contentType: false,
-                    method: 'POST',
-                    data: formData,
-                    success: function (data) {
-                       window.location.href = '/create';
-                    },
-                    error: function (data) {
-                        alert('Error');
-                    }
-                });
-            }
-        }
-    </script>
-
 
   <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
   <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
@@ -229,6 +195,35 @@
   <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
   <script src="{% static 'js/aos.js' %}"></script>
 
+<script>
+    $(document).ready(function () {
+        $("#createButton").click(function (e) {
+            e.preventDefault();
+
+            let formData = new FormData();
+            formData.append('title', $('input[name="title"]').val());
+            alert($('input[name="title"]').val());
+            formData.append('description', $('textarea[name="description"]').val());
+            alert($('textarea[name="description"]').val());
+
+            var url = $("#createButton").data("url");
+            $.ajax({
+                headers: { "X-CSRFToken": "{{csrf_token}}" },
+                url: url,
+                processData: false,
+                contentType: false,
+                method: 'POST',
+                data: formData,
+                success: function (data) {
+                    window.location.href = '';
+                },
+                error: function (data) {
+                    alert('Error');
+                }
+            });
+        })
+    });
+</script>
  
   <script src="{% static 'js/main.js' %}"></script>
     {% endblock %}
