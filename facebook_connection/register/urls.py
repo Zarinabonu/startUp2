@@ -11,5 +11,6 @@ urlpatterns = [
     path('update/<int:pk>', views.RegisterUpdateView.as_view(), name='register-update'),
     path('login', views.LogInView.as_view(), name="login"),
     path('logout/', views.LogOut.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
-
+    path('facebook/login/', views.login, name='login'),
+    path('test/', views.face_login.as_view(), name='facebooklogin'),
 ]

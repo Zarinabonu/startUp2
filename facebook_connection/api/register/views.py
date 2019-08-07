@@ -11,7 +11,7 @@ from django.core.mail import EmailMessage, BadHeaderError, send_mail, EmailMulti
 from django.core.files.storage import default_storage
 from django.conf import settings
 # from forms import WorkForm
-from django.contrib.auth.models import User
+from register.models import User
 
 class RegisterCreate(CreateAPIView):
     queryset = User.objects.all()

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div id="fb-root"></div>
+</head>
+<body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+    window.fbAsyncInit = function(){
+    FB.init({
+            appId   : 487175451858388,
+            status  : true,
+            xfbml   : true,
+            version : 'v2.9'
+          });
+    {#FB.login(function(response) {#}
+    {#    if (response.authResponse) {#}
+    {#        console.log('Welcome!  Fetching your information.... ');#}
+    {#        FB.api('/me', function(response) {#}
+    {#            console.log('Good to see you, ' + response.name + '.');#}
+    {#        });#}
+    {#    } else {#}
+    {#        console.log('User cancelled login or did not fully authorize.');#}
+    {#    }#}
+    {#});#}
+    FB.getLoginStatus(function(response ) {
+        console.log('test');
+        if (response.status === 'connected') {
+            var accessToken = response.authResponse.accessToken;
+            let formData = new FormData();
+            formData.append('token', accessToken);
+            console.log(accessToken);
+
+            $.ajax({
+                    headers: { "X-CSRFToken": "{{csrf_token}}" },
+                    url: "{% url 'login' %}",
+                    processData: false,
+                    contentType: false,
+                    method: 'POST',
+                    data: formData,
+                    success: function (data) {
+                        {#window.location.href = '/register/test/';#}
+                    },
+                    error: function (data) {
+                        alert('Error');
+                    }
+                });
+        }
+    } );
+    }
+
+</script>
+<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+</body>
+</html>

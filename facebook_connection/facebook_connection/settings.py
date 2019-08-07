@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'start_facebook',
     'register',
     'startUpBanner',
+    'rest_framework.authtoken',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -138,6 +140,22 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer'
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10
+}
+FACEBOOK_APP_ID = 487175451858388
+FACEBOOK_APP_SECRET = 'a2bc6f483bca1e2ad74fc69dacfc6bd1'
 
 # LOGIN_URL = 'login'
 # LOGIN_REDIRECT_URL = 'home'
@@ -158,6 +176,8 @@ STATICFILES_DIRS = [
 #     ('link', 'profile_url'),
 #
 # ]
+AUTH_USER_MODEL = "register.User"
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # 465

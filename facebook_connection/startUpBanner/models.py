@@ -1,5 +1,8 @@
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.db import models
+
+from register.models import User
+
 
 class StartUpBanner(models.Model):
 	user =models.ForeignKey(User,on_delete=models.CASCADE, null=True)
