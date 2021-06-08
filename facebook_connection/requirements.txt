@@ -4,7 +4,7 @@ Django==2.2.4
 django-restframework==0.0.1
 facebook-sdk==3.1.0
 idna==2.8
-Pillow==6.1.0
+Pillow==8.2.0
 pytz==2019.2
 requests==2.22.0
 sqlparse==0.3.0
